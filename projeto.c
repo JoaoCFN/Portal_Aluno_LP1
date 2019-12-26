@@ -271,7 +271,7 @@ int main(){
 
 	while (continuar != 0){
 
-		printf("SEJA BEM VINDO!\n");
+		printf("SEJA BEM VINDO AO PORTAL DO ALUNO!\n");
 		printf("VOCE EH:\n");
 		printf("1) SECRETARIO\n");
 		printf("2) ALUNO \n");
