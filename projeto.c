@@ -8,7 +8,7 @@ typedef struct {
 	char login_aluno[10];
 	char senha_aluno[10];
 
-	float media[3];
+	float media;
 	int qts_faltas;
 
 
@@ -113,7 +113,7 @@ void inserir_media(int y, Aluno *alunos){
 
 		printf("MEDIAS ATUAIS\n");
 		for(i = 0; i < 3; i++){
-			printf("%s: %f \n", alunos[i].matricula, alunos[i].media[i]);
+			printf("%s: %f \n", alunos[i].matricula, alunos[i].media);
 		}
 
 		printf("DESEJA INSERIR OUTRA MEDIA? [0] NAO [1] SIM\n");	
