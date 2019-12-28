@@ -24,15 +24,7 @@ typedef struct
 
 } Secretario;
 
-//FUNÇÃO LIMPA O LIXO DE MEMORIA
-void limpaLixoMemoria(Aluno *alunos, char nomes_das_materias[13][30]){
-	int i, j, k;
-	for (i=0;i<3;i++){
-		for(j=0;j<13;j++){
-			alunos[i].media[j] = 0.0;
-		}//for [12] materias	
-	}//for [3] alunos
-}
+
 // FUNÇÕES QUE LOGA O SECRETÁRIO
 void login_secretario(Secretario *secretarios, Aluno *alunos, char nomes_das_materias[13][30]){
 	int i, z, contador_senha = 0, opcao_login = 0, total_de_func = 2;
@@ -333,7 +325,7 @@ int main(){
 	if (entrada_func == NULL){
 		printf("Nao foi possivel ler o arquivo de entrada dos funcionarios\n");
 	}
-	void limpaLixoMemoria(alunos, nome_das_materias);
+
 	while (!feof(entrada_func)){
         // LÊ UMA linha (INCLUSIVE COM O '\N') O FGETS
         if (result){
