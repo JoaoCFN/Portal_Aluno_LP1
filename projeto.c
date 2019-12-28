@@ -333,7 +333,7 @@ int main(){
 	if (entrada_func == NULL){
 		printf("Nao foi possivel ler o arquivo de entrada dos funcionarios\n");
 	}
-	void limpaLixoMemoria(alunos, nome_das_materias);
+
 	while (!feof(entrada_func)){
         // LÊ UMA linha (INCLUSIVE COM O '\N') O FGETS
         if (result){
