@@ -85,7 +85,7 @@ void funcoes_secretario(Aluno *alunos, char nomes_das_materias[13][30]){
 
 	switch(opcao_func){
 		case 1:
-			inserir_media(alunos, nomes_das_materias);
+			inserir_atualizar_media(alunos, nomes_das_materias);
 		break;
 
 		case 2:
