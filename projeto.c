@@ -79,9 +79,8 @@ void funcoes_secretario(Aluno *alunos, char nomes_das_materias[13][30]){
 	system("cls");
 	int opcao_func;
 	printf("O QUE DESEJA FAZER?\n");
-	printf("1) INSERIR MEDIAS\n");
-	printf("2) ATUALIZAR MEDIAS \n");
-	printf("3) VIZUALIZAR DADOS DO ALUNO \n");
+	printf("1) INSERIR OU ATUALIZAR MEDIAS\n");
+	printf("2) VIZUALIZAR DADOS DO ALUNO \n");
 	scanf("%d", &opcao_func);
 
 	switch(opcao_func){
@@ -90,10 +89,6 @@ void funcoes_secretario(Aluno *alunos, char nomes_das_materias[13][30]){
 		break;
 
 		case 2:
-
-		break;
-
-		case 3:
 			vizualizar_dados_alunos(alunos, nomes_das_materias);
 		break;
 
@@ -102,8 +97,8 @@ void funcoes_secretario(Aluno *alunos, char nomes_das_materias[13][30]){
 
 }
 
-// FUNÇÃO QUE AUXÍLIA O SECRETÁRIO A INSERIR AS MÉDIAS DO ALUNOS
-void inserir_media(Aluno *alunos, char nomes_das_materias[13][30]){
+// FUNÇÃO QUE AUXÍLIA O SECRETÁRIO A INSERIR OU ATUALIZAR AS MÉDIAS DO ALUNOS
+void inserir_atualizar_media(Aluno *alunos, char nomes_das_materias[13][30]){
 	int i, j, escolha_matricula, continuar = 1, escolha_materia = 0, continuar_inserindo_media = 1;
 	Secretario medias[3];
 
@@ -115,7 +110,7 @@ void inserir_media(Aluno *alunos, char nomes_das_materias[13][30]){
 			printf("%d) %s \n",  i, alunos[i].matricula);
 		}
 
-		printf("QUAL DOS ALUNOS VOCE DESEJA INSERIR A MEDIA?\n");
+		printf("QUAL DOS ALUNOS VOCE DESEJA INSERIR OU ATUALIZAR A MEDIA?\n");
 		scanf("%d", &escolha_matricula);
 
 		while(continuar_inserindo_media != 0){
@@ -131,7 +126,7 @@ void inserir_media(Aluno *alunos, char nomes_das_materias[13][30]){
 			}
 
 
-			printf("QUAL DAS MATERIAS VOCE DESEJA INSERIR A MEDIA?\n");
+			printf("QUAL DAS MATERIAS VOCE DESEJA INSERIR OU ATUALIZAR A MEDIA?\n");
 			scanf("%d", &escolha_materia);
 
 			printf("MEDIA:\n");
@@ -139,7 +134,7 @@ void inserir_media(Aluno *alunos, char nomes_das_materias[13][30]){
 			
 
 			system("cls");
-			printf("INSERCAO FEITO COM SUCESSO\n");
+			printf("EXECUTADO COM SUCESSO\n");
 			
 			for (i = 0; i < 13; i++){
 			    // PRINTAR MATRIZ
@@ -154,11 +149,21 @@ void inserir_media(Aluno *alunos, char nomes_das_materias[13][30]){
 
 			}
 
+<<<<<<< HEAD
 			printf("DESEJA INSERIR OUTRA MEDIA EM OUTRA DISCIPLINA DESSE MESMO ALUNO? [0] NAO [1] SIM\n");
+=======
+			/*
+			printf("MEDIAS ATUAIS\n");
+			for(i = 0; i < 3; i++){
+				printf("%s: %f \n", alunos[i].matricula, alunos[i].media);
+			}
+			*/
+			printf("DESEJA INSERIR OU ATUALIZAR OUTRA MEDIA EM OUTRA DISCIPLINA DESSE MESMO ALUNO? [0] NAO [1] SIM\n");
+>>>>>>> 291e9b93defdb1533f70a58ab1447d526986b5c1
 			scanf("%d", &continuar_inserindo_media);
 		}
 
-		printf("DESEJA INSERIR A MEDIA DE OUTRO ALUNO? [0] NAO [1] SIM\n");
+		printf("DESEJA INSERIR OU ATUALIZAR A MEDIA DE OUTRO ALUNO? [0] NAO [1] SIM\n");
 		scanf("%d", &continuar);
 	}
 	if (continuar != 0){
