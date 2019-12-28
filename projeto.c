@@ -237,6 +237,7 @@ void login_aluno(Aluno *alunos, char nomes_das_materias[13][30]){
 
 // FUNÇÕES DOS ALUNOS
 funcoes_aluno(Aluno *alunos, char nomes_das_materias[13][30]){
+	
 	printf("AAAAAAAAAAAAAAAAAAAAAAAAA\n");
 }
 
