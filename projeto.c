@@ -334,6 +334,8 @@ int main(){
 		printf("Nao foi possivel ler o arquivo de entrada dos funcionarios\n");
 	}
 
+	limpaLixoMemoria(alunos, nomes_das_materias);
+
 	while (!feof(entrada_func)){
         // LÊ UMA linha (INCLUSIVE COM O '\N') O FGETS
         if (result){
