@@ -27,9 +27,10 @@ typedef struct
 //FUNÇÃO LIMPA O LIXO DE MEMORIA
 void limpaLixoMemoria(Aluno *alunos){
 	int i, j, k;
-	for (i=0;i<3;i++){
-		for(j=0;j<13;j++){
+	for (i = 0; i < 3; i++){
+		for(j = 0; j < 13; j++){
 			alunos[i].media[j] = 0;
+			alunos[i].qts_faltas[j] = 0;
 		}//for [12] materias	
 	}//for [3] alunos
 }
@@ -192,9 +193,9 @@ void vizualizar_dados_alunos(Aluno *alunos, char nomes_das_materias[13][30]){
 		    printf("%d) %s", j, nomes_das_materias[j]);
 
 
-		    printf("%9.1f", alunos[i].media[j]);
+		    printf("%9.1f    %d", alunos[i].media[j], alunos[i].qts_faltas[j]);
 
-		    printf("%d\n", alunos[i].qts_faltas[j]);
+		    /*printf("%9.1d\n", alunos[i].qts_faltas[j]);*/
 		    
 		    
 		    printf("\n");
