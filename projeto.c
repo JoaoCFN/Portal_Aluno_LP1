@@ -254,7 +254,7 @@ funcoes_aluno(Aluno *alunos, char nomes_das_materias[13][30], int indice_aluno_l
 
 	switch(opcao_menu_aluno){
 		case 1:
-			
+				printf("=================================================== \n");
 				printf("NOME                : %s \n",  alunos[indice_aluno_logado].nome);
 
 			    printf("MATRICULA           : %s \n",  alunos[indice_aluno_logado].matricula);
@@ -263,7 +263,14 @@ funcoes_aluno(Aluno *alunos, char nomes_das_materias[13][30], int indice_aluno_l
 
 			    printf("SENHA               : %s \n",  alunos[indice_aluno_logado].senha_aluno);
 				printf("=================================================== \n");
-			    for (j = 0; j < 13; j++){
+			    
+			
+			
+		break;
+
+		case 2:
+				printf("=================================================== \n");
+				for (j = 0; j < 13; j++){
 				    // PRINTAR MATRIZ
 				    printf("%d) %s", j, nomes_das_materias[j]);
 
@@ -275,12 +282,6 @@ funcoes_aluno(Aluno *alunos, char nomes_das_materias[13][30], int indice_aluno_l
 
 				}
 			    printf("=================================================== \n");
-			
-			
-		break;
-
-		case 2:
-
 		break;
 
 		case 3:
