@@ -153,14 +153,7 @@ void inserir_media(Aluno *alunos, char nomes_das_materias[13][30]){
 			    printf("\n");
 
 			}
-			
 
-			/*
-			printf("MEDIAS ATUAIS\n");
-			for(i = 0; i < 3; i++){
-				printf("%s: %f \n", alunos[i].matricula, alunos[i].media);
-			}
-			*/
 			printf("DESEJA INSERIR OUTRA MEDIA EM OUTRA DISCIPLINA DESSE MESMO ALUNO? [0] NAO [1] SIM\n");
 			scanf("%d", &continuar_inserindo_media);
 		}
@@ -267,9 +260,7 @@ void funcoes_aluno(Aluno *alunos, char nomes_das_materias[13][30], int indice_al
 
 			    printf("SENHA               : %s \n",  alunos[indice_aluno_logado].senha_aluno);
 				printf("=================================================== \n");
-			    
-			
-			
+
 		break;
 
 		case 2:
