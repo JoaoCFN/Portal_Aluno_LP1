@@ -9,7 +9,7 @@ typedef struct {
 	char senha_aluno[10];
 
 	float media[13];
-	int qts_faltas;
+	int qts_faltas[13];
 
 
 
@@ -184,6 +184,8 @@ void vizualizar_dados_alunos(Aluno *alunos, char nomes_das_materias[13][30]){
 
 
 		    printf("%9.1f", alunos[i].media[j]);
+
+		    printf("%d\n", alunos[i].qts_faltas[j]);
 		    
 		    
 		    printf("\n");
@@ -236,7 +238,7 @@ void login_aluno(Aluno *alunos, char nomes_das_materias[13][30]){
 }
 
 // FUNÇÕES DOS ALUNOS
-funcoes_aluno(Aluno *alunos, char nomes_das_materias[13][30], int indice_aluno_logado){
+void funcoes_aluno(Aluno *alunos, char nomes_das_materias[13][30], int indice_aluno_logado){
 	int opcao_menu_aluno, j, i;
 	printf("VOCE DESEJA\n");
 	printf("1) VIZUALIZAR SEUS DADOS\n");
@@ -289,7 +291,6 @@ int main(){
 	int i, escolha_menu, continuar = 1;
 	char linha[100];
 	char *result;
-	float notas[3][13];
 
 	// MATRIZ DAS DISCIPLINAS
 	char nomes_das_materias[13][30] = {"LINGUA PORTUGUESA      :",
