@@ -8,7 +8,7 @@ typedef struct {
 	char login_aluno[10];
 	char senha_aluno[10];
 
-	float media;
+	float media[13];
 	int qts_faltas;
 
 
@@ -26,7 +26,7 @@ typedef struct
 
 
 // FUNÇÕES QUE LOGA O SECRETÁRIO
-void login_secretario(Secretario *secretarios, Aluno *alunos){
+void login_secretario(Secretario *secretarios, Aluno *alunos, char nomes_das_materias[13][30]){
 	int i, z, contador_senha = 0, opcao_login = 0, total_de_func = 2;
 
 	char teste_login_func[10];
@@ -58,7 +58,7 @@ void login_secretario(Secretario *secretarios, Aluno *alunos){
 
 	if (contador_senha == 6)
 	{
-		funcoes_secretario(alunos);
+		funcoes_secretario(alunos, nomes_das_materias);
 	}
 	else{
 		printf("FALHA NO LOGIN, DIGITE A SENHA CERTA\n");
@@ -66,7 +66,7 @@ void login_secretario(Secretario *secretarios, Aluno *alunos){
 }
 
 // FUNÇÃO QUE ENGLOBA AS FUNÇÕES QUE O USUÁRIO POSSUI
-void funcoes_secretario(Aluno *alunos){
+void funcoes_secretario(Aluno *alunos, char nomes_das_materias[13][30]){
 	system("cls");
 	int opcao_func;
 	printf("O QUE DESEJA FAZER?\n");
@@ -77,7 +77,7 @@ void funcoes_secretario(Aluno *alunos){
 
 	switch(opcao_func){
 		case 1:
-			inserir_media(alunos);
+			inserir_media(alunos, nomes_das_materias);
 		break;
 
 		case 2:
@@ -85,7 +85,7 @@ void funcoes_secretario(Aluno *alunos){
 		break;
 
 		case 3:
-			vizualizar_dados_alunos(alunos);
+			vizualizar_dados_alunos(alunos, nomes_das_materias);
 		break;
 
 	}
@@ -94,8 +94,8 @@ void funcoes_secretario(Aluno *alunos){
 }
 
 // FUNÇÃO QUE AUXÍLIA O SECRETÁRIO A INSERIR AS MÉDIAS DO ALUNOS
-void inserir_media(Aluno *alunos, char *nomes_das_materias){
-	int i, escolha_matricula, continuar = 1;
+void inserir_media(Aluno *alunos, char nomes_das_materias[13][30]){
+	int i, j, escolha_matricula, continuar = 1, escolha_materia = 0, continuar_inserindo_media = 1;
 	Secretario medias[3];
 
 	system("cls");
@@ -105,18 +105,57 @@ void inserir_media(Aluno *alunos, char *nomes_das_materias){
 		for(i = 0; i < 3; i++){
 			printf("%d) %s \n",  i, alunos[i].matricula);
 		}
+
 		printf("QUAL DOS ALUNOS VOCE DESEJA INSERIR A MEDIA?\n");
 		scanf("%d", &escolha_matricula);
 
-		printf("MEDIA:\n");
-		scanf("%f", &alunos[escolha_matricula].media);
+		while(continuar_inserindo_media != 0){
+			system("cls");
+			for (i = 0; i < 13; i++){
+			    // PRINTAR MATRIZ
+			    printf("%d) %s", i, nomes_das_materias[i]);
 
-		printf("MEDIAS ATUAIS\n");
-		for(i = 0; i < 3; i++){
-			printf("%s: %f \n", alunos[i].matricula, alunos[i].media);
+			    /*printf("%9.1f", alunos[escolha_matricula].media[escolha_materia]);*/		    
+			    
+			    printf("\n");
+
+			}
+
+
+			printf("QUAL DAS MATERIAS VOCE DESEJA INSERIR A MEDIA?\n");
+			scanf("%d", &escolha_materia);
+
+			printf("MEDIA:\n");
+			scanf("%f", &alunos[escolha_matricula].media[escolha_materia]);
+			
+
+			system("cls");
+			printf("INSERCAO FEITO COM SUCESSO\n");
+			
+			for (i = 0; i < 13; i++){
+			    // PRINTAR MATRIZ
+			    printf("%d) %s", i, nomes_das_materias[i]);
+
+
+			    printf("%9.1f", alunos[escolha_matricula].media[i]);
+			    
+			    
+			    printf("\n");
+
+			}
+			
+
+			/*
+			printf("MEDIAS ATUAIS\n");
+			for(i = 0; i < 3; i++){
+				printf("%s: %f \n", alunos[i].matricula, alunos[i].media);
+			}
+			*/
+			printf("DESEJA INSERIR OUTRA MEDIA EM OUTRA DISCIPLINA DESSE MESMO ALUNO? [0] NAO [1] SIM\n");
+			scanf("%d", &continuar_inserindo_media);
 		}
 
-		printf("DESEJA INSERIR OUTRA MEDIA? [0] NAO [1] SIM\n");
+		printf("DESEJA INSERIR A MEDIA DE OUTRO ALUNO? [0] NAO [1] SIM\n");
 		scanf("%d", &continuar);
 	}
 	if (continuar != 0){
@@ -127,8 +166,8 @@ void inserir_media(Aluno *alunos, char *nomes_das_materias){
 }
 
 // FUNÇÃO QUE AUXÍLIA O SECRETÁRIO A VIZUALIZAR OS DADOS DOS ALUNOS
-void vizualizar_dados_alunos(Aluno *alunos){
-	int i;
+void vizualizar_dados_alunos(Aluno *alunos, char nomes_das_materias[13][30]){
+	int i, j;
 	printf("ALUNOS CADASTRADOS\n");
 	for (i = 0; i < 3; i++){
 		printf("NOME                : %s \n",  alunos[i].nome);
@@ -138,14 +177,25 @@ void vizualizar_dados_alunos(Aluno *alunos){
 	    printf("LOGIN               : %s \n",  alunos[i].login_aluno);
 
 	    printf("SENHA               : %s \n",  alunos[i].senha_aluno);
-	    printf("MEDIA               : %f \n",  alunos[i].media);
+		printf("=================================================== \n");
+	    for (j = 0; j < 13; j++){
+		    // PRINTAR MATRIZ
+		    printf("%d) %s", j, nomes_das_materias[i]);
+
+
+		    printf("%9.1f", alunos[i].media[j]);
+		    
+		    
+		    printf("\n");
+
+		}
 	    printf("=================================================== \n");
 	}
 
 }
 
 // FUNÇÃO QUE LOGA O ALUNO
-void login_aluno(Aluno *alunos, char nomes_das_materias[13][30], float notas[3][13]){
+void login_aluno(Aluno *alunos, char nomes_das_materias[13][30]){
 	int i, z, j, contador_senha = 0, opcao_login = 0, total_de_alunos = 3;
 
 	char teste_login_aluno[10];
@@ -298,11 +348,11 @@ int main(){
 		system("cls");
 		switch(escolha_menu){
 			case 1:
-				login_secretario(secretarios, alunos);
+				login_secretario(secretarios, alunos, nomes_das_materias);
 			break;
 
 			case 2:
-				login_aluno(alunos, nomes_das_materias, notas);
+				login_aluno(alunos, nomes_das_materias);
 			break;
 
 			case 3:
