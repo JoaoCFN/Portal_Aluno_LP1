@@ -180,7 +180,7 @@ void vizualizar_dados_alunos(Aluno *alunos, char nomes_das_materias[13][30]){
 		printf("=================================================== \n");
 	    for (j = 0; j < 13; j++){
 		    // PRINTAR MATRIZ
-		    printf("%d) %s", j, nomes_das_materias[i]);
+		    printf("%d) %s", j, nomes_das_materias[j]);
 
 
 		    printf("%9.1f", alunos[i].media[j]);
@@ -227,7 +227,7 @@ void login_aluno(Aluno *alunos, char nomes_das_materias[13][30]){
 	if (contador_senha == 9)
 	{
 		system("cls");
-		funcoes_aluno(alunos, nomes_das_materias);
+		funcoes_aluno(alunos, nomes_das_materias, opcao_login);
 	}
 	else{
 		printf("FALHA NO LOGIN, DIGITE A SENHA CERTA\n");
@@ -236,9 +236,51 @@ void login_aluno(Aluno *alunos, char nomes_das_materias[13][30]){
 }
 
 // FUNÇÕES DOS ALUNOS
-funcoes_aluno(Aluno *alunos, char nomes_das_materias[13][30]){
-	
-	printf("AAAAAAAAAAAAAAAAAAAAAAAAA\n");
+funcoes_aluno(Aluno *alunos, char nomes_das_materias[13][30], int indice_aluno_logado){
+	int opcao_menu_aluno, j, i;
+	printf("VOCE DESEJA\n");
+	printf("1) VIZUALIZAR SEUS DADOS\n");
+	printf("2) VIZUALIZAR MEDIAS E FALTAS DE TODAS AS DISCIPLINAS\n");
+	printf("3) VIZUALIZAR MEDIAS E FALTAS DE UMA DISCIPLINA ESPECIFICA\n");
+	scanf("%d", &opcao_menu_aluno);
+
+	switch(opcao_menu_aluno){
+		case 1:
+			
+				printf("NOME                : %s \n",  alunos[indice_aluno_logado].nome);
+
+			    printf("MATRICULA           : %s \n",  alunos[indice_aluno_logado].matricula);
+
+			    printf("LOGIN               : %s \n",  alunos[indice_aluno_logado].login_aluno);
+
+			    printf("SENHA               : %s \n",  alunos[indice_aluno_logado].senha_aluno);
+				printf("=================================================== \n");
+			    for (j = 0; j < 13; j++){
+				    // PRINTAR MATRIZ
+				    printf("%d) %s", j, nomes_das_materias[j]);
+
+
+				    printf("%9.1f", alunos[indice_aluno_logado].media[j]);
+				    
+				    
+				    printf("\n");
+
+				}
+			    printf("=================================================== \n");
+			
+			
+		break;
+
+		case 2:
+
+		break;
+
+		case 3:
+
+		break;
+
+	}
+
 }
 
 int main(){
