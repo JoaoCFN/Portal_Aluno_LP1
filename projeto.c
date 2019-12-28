@@ -26,7 +26,7 @@ typedef struct
 
 
 // FUNÇÕES QUE LOGA O SECRETÁRIO
-void login_secretario(int n, Secretario *secretarios, int y, Aluno *alunos){
+void login_secretario(Secretario *secretarios, Aluno *alunos){
 	int i, z, contador_senha = 0, opcao_login = 0, total_de_func = 2;
 
 	char teste_login_func[10];
@@ -36,7 +36,7 @@ void login_secretario(int n, Secretario *secretarios, int y, Aluno *alunos){
 	for (i = 0; i < total_de_func; i++){
 		printf("%d) %s\n", i, secretarios[i].login_func);
 	}
-	
+
 
 	printf("ESCOLHA A OPCAO DO SEU USUARIO\n");
 	scanf("%d", &opcao_login);
@@ -46,19 +46,19 @@ void login_secretario(int n, Secretario *secretarios, int y, Aluno *alunos){
 	for (i = 0; i < 2; i++)
 	{
 		for (z = 0; z < 3; z++){
-			
+
 			if (teste_senha_func[z] == secretarios[opcao_login].senha_func[z])
 			{
 				contador_senha++;
-			}	
-					
+			}
+
 		}
-		
+
 	}
 
 	if (contador_senha == 6)
 	{
-		funcoes_secretario(3, alunos);
+		funcoes_secretario(alunos);
 	}
 	else{
 		printf("FALHA NO LOGIN, DIGITE A SENHA CERTA\n");
@@ -66,7 +66,7 @@ void login_secretario(int n, Secretario *secretarios, int y, Aluno *alunos){
 }
 
 // FUNÇÃO QUE ENGLOBA AS FUNÇÕES QUE O USUÁRIO POSSUI
-void funcoes_secretario(int y, Aluno *alunos){
+void funcoes_secretario(Aluno *alunos){
 	system("cls");
 	int opcao_func;
 	printf("O QUE DESEJA FAZER?\n");
@@ -77,7 +77,7 @@ void funcoes_secretario(int y, Aluno *alunos){
 
 	switch(opcao_func){
 		case 1:
-			inserir_media(3, alunos);
+			inserir_media(alunos);
 		break;
 
 		case 2:
@@ -85,7 +85,7 @@ void funcoes_secretario(int y, Aluno *alunos){
 		break;
 
 		case 3:
-			vizualizar_dados_alunos(3, alunos);
+			vizualizar_dados_alunos(alunos);
 		break;
 
 	}
@@ -94,7 +94,7 @@ void funcoes_secretario(int y, Aluno *alunos){
 }
 
 // FUNÇÃO QUE AUXÍLIA O SECRETÁRIO A INSERIR AS MÉDIAS DO ALUNOS
-void inserir_media(int y, Aluno *alunos){
+void inserir_media(Aluno *alunos, char *nomes_das_materias){
 	int i, escolha_matricula, continuar = 1;
 	Secretario medias[3];
 
@@ -109,25 +109,25 @@ void inserir_media(int y, Aluno *alunos){
 		scanf("%d", &escolha_matricula);
 
 		printf("MEDIA:\n");
-		scanf("%f", &alunos[escolha_matricula].media[escolha_matricula]);
+		scanf("%f", &alunos[escolha_matricula].media);
 
 		printf("MEDIAS ATUAIS\n");
 		for(i = 0; i < 3; i++){
 			printf("%s: %f \n", alunos[i].matricula, alunos[i].media);
 		}
 
-		printf("DESEJA INSERIR OUTRA MEDIA? [0] NAO [1] SIM\n");	
+		printf("DESEJA INSERIR OUTRA MEDIA? [0] NAO [1] SIM\n");
 		scanf("%d", &continuar);
 	}
 	if (continuar != 0){
 		system("cls");
-		int main();	
+		int main();
 	}
-	  
+
 }
 
 // FUNÇÃO QUE AUXÍLIA O SECRETÁRIO A VIZUALIZAR OS DADOS DOS ALUNOS
-void vizualizar_dados_alunos(int y, Aluno *alunos){
+void vizualizar_dados_alunos(Aluno *alunos){
 	int i;
 	printf("ALUNOS CADASTRADOS\n");
 	for (i = 0; i < 3; i++){
@@ -138,24 +138,25 @@ void vizualizar_dados_alunos(int y, Aluno *alunos){
 	    printf("LOGIN               : %s \n",  alunos[i].login_aluno);
 
 	    printf("SENHA               : %s \n",  alunos[i].senha_aluno);
-	    printf("MEDIA               : %f \n",  alunos[i].media[i]);
+	    printf("MEDIA               : %f \n",  alunos[i].media);
 	    printf("=================================================== \n");
 	}
-	
+
 }
 
 // FUNÇÃO QUE LOGA O ALUNO
-void login_aluno(int y, Aluno *alunos){
-	int i, z, contador_senha = 0, opcao_login = 0, total_de_alunos = 3;
+void login_aluno(Aluno *alunos, char nomes_das_materias[13][30], float notas[3][13]){
+	int i, z, j, contador_senha = 0, opcao_login = 0, total_de_alunos = 3;
 
 	char teste_login_aluno[10];
 	char teste_senha_aluno[10];
+
 
 	printf("USUARIOS CADASTRADOS\n");
 	for (i = 0; i < total_de_alunos; i++){
 		printf("%d) %s\n", i, alunos[i].login_aluno);
 	}
-	
+
 	printf("ESCOLHA A OPCAO DO SEU USUARIO\n");
 	scanf("%d", &opcao_login);
 	printf("DIGITE SUA SENHA: \n");
@@ -164,13 +165,13 @@ void login_aluno(int y, Aluno *alunos){
 	for (i = 0; i < 3; i++)
 	{
 		for (z = 0; z < 3; z++){
-			
+
 			if (teste_senha_aluno[z] == alunos[opcao_login].senha_aluno[z])
 			{
 				contador_senha++;
-			}						
+			}
 		}
-		
+
 	}
 
 	if (contador_senha == 9)
@@ -181,7 +182,7 @@ void login_aluno(int y, Aluno *alunos){
 	else{
 		printf("FALHA NO LOGIN, DIGITE A SENHA CERTA\n");
 	}
-	
+
 }
 
 // FUNÇÕES DOS ALUNOS
@@ -194,6 +195,23 @@ int main(){
 	int i, escolha_menu, continuar = 1;
 	char linha[100];
 	char *result;
+	float notas[3][13];
+
+	// MATRIZ DAS DISCIPLINAS
+	char nomes_das_materias[13][30] = {"LINGUA PORTUGUESA      :",
+	                                   "MATEMATICA             :",
+	                                   "BIOLOGIA               :",
+	                                   "FISICA                 :",
+	                                   "QUIMICA                :",
+	                                   "FILOSOFIA              :",
+	                                   "INGLES                 :",
+	                                   "GEOGRAFIA              :",
+	                                   "HISTORIA               :",
+	                                   "SOCIOLOGIA             :",
+	                                   "EDUCACAO FISICA        :",
+	                                   "EDUCACAO ARTISTICA     :",
+	                                   "LITERATURA             :"};
+
 
 	// VARIÁVEL TIPO STRUCT
 	Secretario secretarios[2];
@@ -280,11 +298,11 @@ int main(){
 		system("cls");
 		switch(escolha_menu){
 			case 1:
-				login_secretario(2, secretarios, 3, alunos);
+				login_secretario(secretarios, alunos);
 			break;
 
 			case 2:
-				login_aluno(3, alunos);
+				login_aluno(alunos, nomes_das_materias, notas);
 			break;
 
 			case 3:
