@@ -25,7 +25,7 @@ typedef struct
 } Secretario;
 
 //FUNÇÃO LIMPA O LIXO DE MEMORIA
-void limpaLixoMemoria(Aluno *alunos, char nomes_das_materias[13][30]){
+void limpaLixoMemoria(Aluno *alunos){
 	int i, j, k;
 	for (i=0;i<3;i++){
 		for(j=0;j<13;j++){
@@ -148,6 +148,7 @@ void inserir_media(Aluno *alunos, char nomes_das_materias[13][30]){
 			    printf("%9.1f", alunos[escolha_matricula].media[i]);
 			    
 			    
+
 			    printf("\n");
 
 			}
@@ -334,7 +335,7 @@ int main(){
 		printf("Nao foi possivel ler o arquivo de entrada dos funcionarios\n");
 	}
 
-	limpaLixoMemoria(alunos, nomes_das_materias);
+	limpaLixoMemoria(alunos);
 
 	while (!feof(entrada_func)){
         // LÊ UMA linha (INCLUSIVE COM O '\N') O FGETS
