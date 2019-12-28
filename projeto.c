@@ -29,7 +29,7 @@ void limpaLixoMemoria(Aluno *alunos, char nomes_das_materias[13][30]){
 	int i, j, k;
 	for (i=0;i<3;i++){
 		for(j=0;j<13;j++){
-			alunos[i].media[j] = 0.0;
+			alunos[i].media[j] = 0;
 		}//for [12] materias	
 	}//for [3] alunos
 }
