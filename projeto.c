@@ -227,7 +227,7 @@ void login_aluno(Aluno *alunos, char nomes_das_materias[13][30]){
 	if (contador_senha == 9)
 	{
 		system("cls");
-		funcoes_aluno();
+		funcoes_aluno(alunos, nomes_das_materias);
 	}
 	else{
 		printf("FALHA NO LOGIN, DIGITE A SENHA CERTA\n");
@@ -236,7 +236,7 @@ void login_aluno(Aluno *alunos, char nomes_das_materias[13][30]){
 }
 
 // FUNÇÕES DOS ALUNOS
-funcoes_aluno(){
+funcoes_aluno(Aluno *alunos, char nomes_das_materias[13][30]){
 	printf("AAAAAAAAAAAAAAAAAAAAAAAAA\n");
 }
 
@@ -364,9 +364,6 @@ int main(){
 		printf("DESEJA CONTINUAR O PROGRAMA? [0] NAO [1] SIM\n");
 		scanf("%d", &continuar);
 	}
-
-
-
 
 
 	return 0;
