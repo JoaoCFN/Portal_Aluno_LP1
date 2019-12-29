@@ -185,10 +185,7 @@ void vizualizar_dados_alunos(Aluno *alunos, char nomes_das_materias[13][30]){
 
 
 		    printf("%9.1f    %d", alunos[i].media[j], alunos[i].qts_faltas[j]);
-
-		    /*printf("%9.1d\n", alunos[i].qts_faltas[j]);*/
-		    
-		    
+		    	    
 		    printf("\n");
 
 		}
@@ -269,7 +266,6 @@ void funcoes_aluno(Aluno *alunos, char nomes_das_materias[13][30], int indice_al
 			    // PRINTAR MATRIZ
 			    printf("%d) %s", j, nomes_das_materias[j]);
 
-			    /*printf("%9.1f", alunos[indice_aluno_logado].media[j]);*/
 			    printf("%9.1f    %d", alunos[indice_aluno_logado].media[j], alunos[indice_aluno_logado].qts_faltas[j]);
 			    
 			    printf("\n");
@@ -283,9 +279,7 @@ void funcoes_aluno(Aluno *alunos, char nomes_das_materias[13][30], int indice_al
 			printf("=================================================== \n");
 			for (i = 0; i < 13; i++){
 			    // PRINTAR MATRIZ
-			    printf("%d) %s", i, nomes_das_materias[i]);
-
-			    /*printf("%9.1f", alunos[escolha_matricula].media[escolha_materia]);*/		    
+			    printf("%d) %s", i, nomes_das_materias[i]);	    
 			    
 			    printf("\n");
 
