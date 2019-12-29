@@ -15,7 +15,7 @@ typedef struct {
 
 } Aluno;
 
-// ESTRUTURA ALUNOS
+// ESTRUTURA SECRETÁRIO
 typedef struct
 {
 	char codigo[10];
@@ -24,7 +24,7 @@ typedef struct
 
 } Secretario;
 
-//FUNÇÃO LIMPA O LIXO DE MEMORIA
+//FUNÇÃO LIMPA O LIXO DE MEMORIA CONTIDO NOS VETORES 'MÉDIA' E 'FALTAS' DA ESTRUTURA ALUNO
 void limpaLixoMemoria(Aluno *alunos){
 	int i, j, k;
 	for (i = 0; i < 3; i++){
@@ -36,35 +36,35 @@ void limpaLixoMemoria(Aluno *alunos){
 }
 // FUNÇÕES QUE LOGA O SECRETÁRIO
 void login_secretario(Secretario *secretarios, Aluno *alunos, char nomes_das_materias[13][30]){
+	// DECLARAÇÃO DE VARIÁVEIS
 	int i, z, contador_senha = 0, opcao_login = 0, total_de_func = 2, logado;
-
 	char teste_login_func[10];
 	char teste_senha_func[10];
 
+	// MOSTRA AO USUÁRIO QUAIS SÃO OS SECRETÁRIOS CADASTRADOS NO SISTEMA
 	printf("USUARIOS CADASTRADOS\n");
 	for (i = 0; i < total_de_func; i++){
 		printf("%d) %s\n", i, secretarios[i].login_func);
 	}
-
-
 	printf("ESCOLHA A OPCAO DO SEU USUARIO\n");
 	scanf("%d", &opcao_login);
+	// APÓS O USUÁRIO ESCOLHER QUAL SERÁ SEU LOGIN ELE DIGITA A SENHA DA CONTA
 	printf("DIGITE SUA SENHA: \n");
 	scanf("%s", &teste_senha_func);
 
+	// LOOP QUE COMPARA A SENHA DIGITADA COM A SENHA CONTIDA NO STRUCT
 	for (i = 0; i < 2; i++)
 	{
 		for (z = 0; z < 3; z++){
-
+			// TESTE CONDICIONAL DE CARACTERE POR CARACTERE 
 			if (teste_senha_func[z] == secretarios[opcao_login].senha_func[z])
 			{
 				contador_senha++;
 			}
-
 		}
-
 	}
 
+	// SE O CONTADOR FOR IGUAL A 6, SIGNIFICA QUE A SENHA ESTÁ CERTA E O PROGRAMA SEGUE PARA O MENU DO SECRETÁRIO
 	if (contador_senha == 6)
 	{
 		funcoes_secretario(alunos, nomes_das_materias);
@@ -177,7 +177,6 @@ void inserir_atualizar_media(Aluno *alunos, char nomes_das_materias[13][30]){
 }
 
 // FUNÇÃO QUE AUXÍLIA O SECRETÁRIO A ATUALIZAR AS FALTAS DO ALUNOS
-
 void atualizar_faltas(Aluno *alunos, char nomes_das_materias[13][30]){
 	int i, j, escolha_matricula, continuar = 1, escolha_materia = 0, continuar_inserindo_faltas = 1;
 	Secretario medias[3];
@@ -273,26 +272,27 @@ void vizualizar_dados_alunos(Aluno *alunos, char nomes_das_materias[13][30]){
 
 // FUNÇÃO QUE LOGA O ALUNO
 void login_aluno(Aluno *alunos, char nomes_das_materias[13][30]){
+	// DECLARAÇÃO DE VARIÁVEIS
 	int i, z, j, contador_senha = 0, opcao_login = 0, total_de_alunos = 3;
-
 	char teste_login_aluno[10];
 	char teste_senha_aluno[10];
 
-
+	// MOSTRA AO USUÁRIO QUAIS SÃO OS ALUNOS CADASTRADOS NO SISTEMA
 	printf("USUARIOS CADASTRADOS\n");
 	for (i = 0; i < total_de_alunos; i++){
 		printf("%d) %s\n", i, alunos[i].login_aluno);
 	}
-
 	printf("ESCOLHA A OPCAO DO SEU USUARIO\n");
 	scanf("%d", &opcao_login);
+	// APÓS O USUÁRIO ESCOLHER QUAL SERÁ SEU LOGIN ELE DIGITA A SENHA DA CONTA
 	printf("DIGITE SUA SENHA: \n");
 	scanf("%s", &teste_senha_aluno);
 
+	// LOOP QUE COMPARA A SENHA DIGITADA COM A SENHA CONTIDA NO STRUCT
 	for (i = 0; i < 3; i++)
 	{
 		for (z = 0; z < 3; z++){
-
+			// TESTE CONDICIONAL DE CARACTERE POR CARACTERE 
 			if (teste_senha_aluno[z] == alunos[opcao_login].senha_aluno[z])
 			{
 				contador_senha++;
@@ -301,6 +301,7 @@ void login_aluno(Aluno *alunos, char nomes_das_materias[13][30]){
 
 	}
 
+	// SE O CONTADOR FOR IGUAL A 9, SIGNIFICA QUE A SENHA ESTÁ CERTA E O PROGRAMA SEGUE PARA O MENU DO ALUNO
 	if (contador_senha == 9)
 	{
 		system("cls");
@@ -314,7 +315,10 @@ void login_aluno(Aluno *alunos, char nomes_das_materias[13][30]){
 
 // FUNÇÃO ONDE AS OPÇÕES DO ALUNO SÃO APRESENTADAS
 void funcoes_aluno(Aluno *alunos, char nomes_das_materias[13][30], int indice_aluno_logado){
+	// DECLARAÇÃO DE VARIÁVEIS
 	int opcao_menu_aluno, j, i, indice_disciplina, continuar = 1;
+
+	// LOOP QUE APRESENTA O MENU DE OPÇÕES DO SISTEMAS PARA OS ALUNOS
 	while(continuar != 0){
 		system("cls");
 		printf("VOCE DESEJA\n");
@@ -341,14 +345,14 @@ void funcoes_aluno(Aluno *alunos, char nomes_das_materias[13][30], int indice_al
 				printf("=================================================== \n");
 				printf("                                      FALTAS\n");
 				for (j = 0; j < 13; j++){
-
-				    // PRINTAR MATRIZ
+				    // PRINTAR MATRIZ DE NOME DAS MATÉRIAS
 				    printf("%d) %s", j, nomes_das_materias[j]);
-
-				    printf("%9.1f    %d", alunos[indice_aluno_logado].media[j], alunos[indice_aluno_logado].qts_faltas[j]);
-				    
+				    // PRINTA A MÉDIA NA MATÉRIA E A QUANTIDADE DE FALTAS LOGO AO LADO
+				    printf("%9.1f    %d", alunos[indice_aluno_logado].media[j], alunos[indice_aluno_logado].qts_faltas[j]);				 
 				    printf("\n");
 
+				    // SE O ALUNO TIRAR NA MÉDIA 7,0 PONTOS E NÃO FALTAR MAIS DE 75% DE AULAS ELE É APROVADO
+				    // 75% EQUIVALE A 15 HORAS DE DISCIPLINA E AS FALTAS SÃO LANÇADAS EM HORAS NO SISTEMA
 				    if(alunos[indice_aluno_logado].media[j] > 7 && alunos[indice_aluno_logado].qts_faltas[j] < 15){
 				    	printf("STATUS: APROVADO\n");
 				    	
@@ -367,12 +371,9 @@ void funcoes_aluno(Aluno *alunos, char nomes_das_materias[13][30], int indice_al
 				system("cls");
 				printf("=================================================== \n");
 				for (j = 0; j < 13; j++){
-				    // PRINTAR MATRIZ
+				    // PRINTAR MATRIZ DE NOME DAS MATÉRIAS
 				    printf("%d) %s", j, nomes_das_materias[j]);	
-
 				    printf("\n");
-
-
 				}
 
 				printf("QUAL DISCIPLINA VOCE DESEJA VIZUALIZAR?\n");
@@ -380,12 +381,16 @@ void funcoes_aluno(Aluno *alunos, char nomes_das_materias[13][30], int indice_al
 
 				printf("                                   FALTAS\n");
 
+				// PRINTA A MATÉRIA ESPECÍFICA
 			    printf("%s", nomes_das_materias[indice_disciplina]);
 
+			    // PRINTA A MÉDIA NA MATÉRIA E A QUANTIDADE DE FALTAS LOGO AO LADO
 			    printf("%9.1f    %d", alunos[indice_aluno_logado].media[indice_disciplina], alunos[indice_aluno_logado].qts_faltas[indice_disciplina]);
 			    
 			    printf("\n");
 
+			    // SE O ALUNO TIRAR NA MÉDIA 7,0 PONTOS E NÃO FALTAR MAIS DE 75% DE AULAS ELE É APROVADO
+				// 75% EQUIVALE A 15 HORAS DE DISCIPLINA E AS FALTAS SÃO LANÇADAS EM HORAS NO SISTEMA
 			    if(alunos[indice_aluno_logado].media[indice_disciplina] > 7 && alunos[indice_aluno_logado].qts_faltas[indice_disciplina] < 15){
 				    printf("STATUS: APROVADO\n");
 				    	
@@ -430,7 +435,7 @@ int main(){
 	                                   "LITERATURA             :"};
 
 
-	// VARIÁVEL TIPO STRUCT
+	// VARIÁVEIS DO TIPO STRUCT SECRETARIO E ALUNO
 	Secretario secretarios[2];
 	Aluno alunos[3];
 
@@ -439,7 +444,7 @@ int main(){
 	// PONTEIRO ENTRADA DOS ESTUDANTES
 	FILE * entrada_alun;
 
-
+	// ABERTURA DO ARQUIVO
 	entrada_func = fopen("sec.txt", "r");
 
 
@@ -448,11 +453,14 @@ int main(){
 		printf("Nao foi possivel ler o arquivo de entrada dos funcionarios\n");
 	}
 
+	// ESTA FUNÇÃO SERVE PARA ZERAR OS VETORES QUE ARMAZENAM AS FALTAS E AS MEDIAS DA ESTRUTURA DE ALUNO
+	// POIS QUANDO ELAS SÃO INICIADAS PEGAM O LIXO DA MEMÓRIA E MOSTRAM OUTROS VALORES
 	limpaLixoMemoria(alunos);
 
+	//CICLO QUE PREENCHE A ESTRUTURA DE SECRETARIOS
 	while (!feof(entrada_func)){
-        // LÊ UMA linha (INCLUSIVE COM O '\N') O FGETS
-        if (result){
+        // LÊ UMA LINHA (INCLUSIVE COM O '\N') O FGETS
+        if (result){ // SE FOI POSSÍVEL LER EXECUTA O PREENCHIMENTO
             for(i = 0; i < 2; i++){
 
                 result = fgets(linha, 100, entrada_func);
@@ -468,16 +476,19 @@ int main(){
     }
 
 	fclose(entrada_func);
+	// FECHAMENTO DO ARQUIVO
 
+	// ABERTURA DO ARQUIVO
 	entrada_alun = fopen("est.txt", "r");
 
 	if(entrada_alun == NULL){
 		printf("Não foi possivel ler o arquivo de entrada dos alunos\n");
 	}
 
+	//CICLO QUE PREENCHE A ESTRUTURA DE ALUNOS
 	while (!feof(entrada_alun)){
-	    // LÊ UMA linha (INCLUSIVE COM O '\N')O 'FGETS'
-	    if (result){  // SE FOI POSSÍVEL LER VAI EXECUTAR
+	    // LÊ UMA LINHA (INCLUSIVE COM O '\N') O FGETS
+	    if (result){  // SE FOI POSSÍVEL LER EXECUTA O PREENCHIMENTO
 	        for(i = 0; i < 3; i++){
 	            result = fgets(linha, 100, entrada_alun);
 	            sprintf(alunos[i].nome, "%s", result);
@@ -495,7 +506,9 @@ int main(){
     }
 
 	fclose(entrada_alun);
+	// FECHAMENTO DO ARQUIVO
 
+	// CICLO QUE APRESENTA O MENU AO USUÁRIO
 	while (continuar != 0){
 		system("cls");
 		printf("=================================================\n");
@@ -508,14 +521,17 @@ int main(){
 		system("cls");
 		switch(escolha_menu){
 			case 1:
+				// APÓS ESCOLHER ENTRAR COMO SECRETÁRIO A FUNÇÃO DE LOGIN É CHAMADA
 				login_secretario(secretarios, alunos, nomes_das_materias);
 			break;
 
 			case 2:
+				// APÓS ESCOLHER ENTRAR COMO ALUNO A FUNÇÃO DE LOGIN É CHAMADA
 				login_aluno(alunos, nomes_das_materias);
 			break;
 
 			default:
+				// QUALQUER OUTRO VALOR DIGITADO RESULTA NO FECHAMENTO DO PROGRAMA
 				printf("FIM DO PROGRAMA!\n");
 				return 0;
 			break;
