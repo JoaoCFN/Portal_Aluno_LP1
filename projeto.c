@@ -76,29 +76,35 @@ void login_secretario(Secretario *secretarios, Aluno *alunos, char nomes_das_mat
 
 // FUNÇÃO QUE ENGLOBA AS FUNÇÕES QUE O USUÁRIO POSSUI
 void funcoes_secretario(Aluno *alunos, char nomes_das_materias[13][30]){
-	system("cls");
-	int opcao_func;
-	printf("O QUE DESEJA FAZER?\n");
-	printf("1) INSERIR OU ATUALIZAR MEDIAS\n");
-	printf("2) ATUALIZAR FALTAS\n");
-	printf("3) VIZUALIZAR DADOS DO ALUNO \n");
-	scanf("%d", &opcao_func);
+	int opcao_func, continuar = 1;
 
-	switch(opcao_func){
-		case 1:
-			inserir_atualizar_media(alunos, nomes_das_materias);
-		break;
+	while(continuar != 0){
+		system("cls");
+		printf("O QUE DESEJA FAZER?\n");
+		printf("1) INSERIR OU ATUALIZAR MEDIAS\n");
+		printf("2) ATUALIZAR FALTAS\n");
+		printf("3) VIZUALIZAR DADOS DO ALUNO \n");
+		scanf("%d", &opcao_func);
 
-		case 2:
-			atualizar_faltas(alunos, nomes_das_materias);
-		break;
+		switch(opcao_func){
+			case 1:
+				inserir_atualizar_media(alunos, nomes_das_materias);
+			break;
 
-		case 3:
-			vizualizar_dados_alunos(alunos, nomes_das_materias);
-		break;
+			case 2:
+				atualizar_faltas(alunos, nomes_das_materias);
+			break;
 
+			case 3:
+				vizualizar_dados_alunos(alunos, nomes_das_materias);
+			break;
+
+		}	
+
+		printf("VOCE DESEJA VOLTAR AO MENU? [0] NAO [1] SIM\n");
+		printf("AO CLICAR EM NAO, VOCE SAIRA DO SEU USUARIO\n");
+		scanf("%d", &continuar);
 	}
-
 
 }
 
@@ -304,90 +310,96 @@ void login_aluno(Aluno *alunos, char nomes_das_materias[13][30]){
 
 }
 
-// FUNÇÕES DOS ALUNOS
+// FUNÇÃO ONDE AS OPÇÕES DO ALUNO SÃO APRESENTADAS
 void funcoes_aluno(Aluno *alunos, char nomes_das_materias[13][30], int indice_aluno_logado){
-	int opcao_menu_aluno, j, i, indice_disciplina;
-	printf("VOCE DESEJA\n");
-	printf("1) VIZUALIZAR SEUS DADOS\n");
-	printf("2) VIZUALIZAR MEDIAS E FALTAS DE TODAS AS DISCIPLINAS\n");
-	printf("3) VIZUALIZAR MEDIAS E FALTAS DE UMA DISCIPLINA ESPECIFICA\n");
-	scanf("%d", &opcao_menu_aluno);
+	int opcao_menu_aluno, j, i, indice_disciplina, continuar = 1;
+	while(continuar != 0){
+		system("cls");
+		printf("VOCE DESEJA\n");
+		printf("1) VIZUALIZAR SEUS DADOS\n");
+		printf("2) VIZUALIZAR MEDIAS E FALTAS DE TODAS AS DISCIPLINAS\n");
+		printf("3) VIZUALIZAR MEDIAS E FALTAS DE UMA DISCIPLINA ESPECIFICA\n");
+		scanf("%d", &opcao_menu_aluno);
 
-	switch(opcao_menu_aluno){
-		case 1:
-			printf("=================================================== \n");
-			printf("NOME                : %s \n",  alunos[indice_aluno_logado].nome);
+		switch(opcao_menu_aluno){
+			case 1:
+				printf("=================================================== \n");
+				printf("NOME                : %s \n",  alunos[indice_aluno_logado].nome);
 
-		    printf("MATRICULA           : %s \n",  alunos[indice_aluno_logado].matricula);
+			    printf("MATRICULA           : %s \n",  alunos[indice_aluno_logado].matricula);
 
-		    printf("LOGIN               : %s \n",  alunos[indice_aluno_logado].login_aluno);
+			    printf("LOGIN               : %s \n",  alunos[indice_aluno_logado].login_aluno);
 
-		    printf("SENHA               : %s \n",  alunos[indice_aluno_logado].senha_aluno);
-			printf("=================================================== \n");
+			    printf("SENHA               : %s \n",  alunos[indice_aluno_logado].senha_aluno);
+				printf("=================================================== \n");
 
-		break;
+			break;
 
-		case 2:
-			printf("=================================================== \n");
-			printf("                                      FALTAS\n");
-			for (j = 0; j < 13; j++){
+			case 2:
+				printf("=================================================== \n");
+				printf("                                      FALTAS\n");
+				for (j = 0; j < 13; j++){
 
-			    // PRINTAR MATRIZ
-			    printf("%d) %s", j, nomes_das_materias[j]);
+				    // PRINTAR MATRIZ
+				    printf("%d) %s", j, nomes_das_materias[j]);
 
-			    printf("%9.1f    %d", alunos[indice_aluno_logado].media[j], alunos[indice_aluno_logado].qts_faltas[j]);
+				    printf("%9.1f    %d", alunos[indice_aluno_logado].media[j], alunos[indice_aluno_logado].qts_faltas[j]);
+				    
+				    printf("\n");
+
+				    if(alunos[indice_aluno_logado].media[j] > 7){
+				    	printf("STATUS: APROVADO\n");
+				    }
+				    else{
+				    	printf("STATUS: REPROVADO\n");
+				    }
+
+				    printf("\n");
+
+				}
+			    printf("=================================================== \n");
+			break;
+
+			case 3:
+				system("cls");
+				printf("=================================================== \n");
+				for (j = 0; j < 13; j++){
+				    // PRINTAR MATRIZ
+				    printf("%d) %s", j, nomes_das_materias[j]);	
+
+				    printf("\n");
+
+
+				}
+
+				printf("QUAL DISCIPLINA VOCE DESEJA VIZUALIZAR?\n");
+				scanf("%d", &indice_disciplina);
+
+				printf("                                   FALTAS\n");
+
+			    printf("%s", nomes_das_materias[indice_disciplina]);
+
+			    printf("%9.1f    %d", alunos[indice_aluno_logado].media[indice_disciplina], alunos[indice_aluno_logado].qts_faltas[indice_disciplina]);
 			    
 			    printf("\n");
 
-			    if(alunos[indice_aluno_logado].media[j] > 7){
-			    	printf("STATUS: APROVADO\n");
-			    }
-			    else{
-			    	printf("STATUS: REPROVADO\n");
-			    }
+			    if(alunos[indice_aluno_logado].media[indice_disciplina] > 7){
+				    	printf("STATUS: APROVADO\n");
+				    }
+				else{
+				    printf("STATUS: REPROVADO\n");
+				}    
 
 			    printf("\n");
 
-			}
-		    printf("=================================================== \n");
-		break;
+				
+				printf("=================================================== \n");
+			break;
 
-		case 3:
-			system("cls");
-			printf("=================================================== \n");
-			for (j = 0; j < 13; j++){
-			    // PRINTAR MATRIZ
-			    printf("%d) %s", j, nomes_das_materias[j]);	
-
-			    printf("\n");
-
-
-			}
-
-			printf("QUAL DISCIPLINA VOCE DESEJA VIZUALIZAR?\n");
-			scanf("%d", &indice_disciplina);
-
-			printf("                                   FALTAS\n");
-
-		    printf("%s", nomes_das_materias[indice_disciplina]);
-
-		    printf("%9.1f    %d", alunos[indice_aluno_logado].media[indice_disciplina], alunos[indice_aluno_logado].qts_faltas[indice_disciplina]);
-		    
-		    printf("\n");
-		    
-		    if(alunos[indice_aluno_logado].media[indice_disciplina] > 7){
-			    	printf("STATUS: APROVADO\n");
-			    }
-			else{
-			    printf("STATUS: REPROVADO\n");
-			}    
-
-		    printf("\n");
-
-			
-			printf("=================================================== \n");
-		break;
-
+		}
+		printf("VOCE DESEJA VOLTAR AO MENU? [0] NAO [1] SIM\n");
+		printf("AO CLICAR EM NAO, VOCE SAIRA DO SEU USUARIO\n");
+		scanf("%d", &continuar);
 	}
 
 }
@@ -441,15 +453,12 @@ int main(){
 
                 result = fgets(linha, 100, entrada_func);
                 sprintf(secretarios[i].codigo, "%s", result);
-                printf("CODIGO                 : %s \n",  secretarios[i].codigo);
 
                 result = fgets(linha, 100, entrada_func);
                 sprintf(secretarios[i].login_func, "%s", result);
-                printf("LOGIN                  : %s \n",  secretarios[i].login_func);
 
                 result = fgets(linha, 100, entrada_func);
                 sprintf(secretarios[i].senha_func, "%s", result);
-                printf("SENHA                  : %s \n",  secretarios[i].senha_func);
             }
         }
     }
@@ -461,7 +470,6 @@ int main(){
 	if(entrada_alun == NULL){
 		printf("Não foi possivel ler o arquivo de entrada dos alunos\n");
 	}
-	printf("==================================================================\n");
 
 	while (!feof(entrada_alun)){
 	    // LÊ UMA linha (INCLUSIVE COM O '\N')O 'FGETS'
@@ -469,34 +477,29 @@ int main(){
 	        for(i = 0; i < 3; i++){
 	            result = fgets(linha, 100, entrada_alun);
 	            sprintf(alunos[i].nome, "%s", result);
-	            printf("NOME                : %s \n",  alunos[i].nome);
 
 	            result = fgets(linha, 100, entrada_alun);
 	            sprintf(alunos[i].matricula, "%s", result);
-	            printf("MATRICULA           : %s \n",  alunos[i].matricula);
 
 	            result = fgets(linha, 100, entrada_alun);
 	            sprintf(alunos[i].login_aluno, "%s", result);
-	            printf("LOGIN               : %s \n",  alunos[i].login_aluno);
 
 	            result = fgets(linha, 100, entrada_alun);
 	            sprintf(alunos[i].senha_aluno, "%s", result);
-	            printf("SENHA               : %s \n",  alunos[i].senha_aluno);
 	        }
     	}
     }
 
 	fclose(entrada_alun);
 
-	system("cls");
-
 	while (continuar != 0){
-
+		system("cls");
+		printf("=================================================\n");
 		printf("SEJA BEM VINDO AO PORTAL DO ALUNO!\n");
 		printf("VOCE EH:\n");
 		printf("1) SECRETARIO\n");
 		printf("2) ALUNO \n");
-
+		printf("=================================================\n");
 		scanf("%d", &escolha_menu);
 		system("cls");
 		switch(escolha_menu){
@@ -508,8 +511,9 @@ int main(){
 				login_aluno(alunos, nomes_das_materias);
 			break;
 
-			case 3:
-
+			default:
+				printf("FIM DO PROGRAMA!\n");
+				return 0;
 			break;
 
 		}
