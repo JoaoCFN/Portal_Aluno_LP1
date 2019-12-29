@@ -76,8 +76,10 @@ void login_secretario(Secretario *secretarios, Aluno *alunos, char nomes_das_mat
 
 // FUNÇÃO QUE ENGLOBA AS FUNÇÕES QUE O USUÁRIO POSSUI
 void funcoes_secretario(Aluno *alunos, char nomes_das_materias[13][30]){
+	// DECLARAÇÃO DE VARIÁVEIS
 	int opcao_func, continuar = 1;
 
+	// LOOP QUE APRESENTA O MENU DE OPÇÕES DO SISTEMA PARA OS SECRETÁRIOS
 	while(continuar != 0){
 		system("cls");
 		printf("O QUE DESEJA FAZER?\n");
@@ -110,14 +112,16 @@ void funcoes_secretario(Aluno *alunos, char nomes_das_materias[13][30]){
 
 // FUNÇÃO QUE AUXÍLIA O SECRETÁRIO A INSERIR OU ATUALIZAR AS MÉDIAS DO ALUNOS
 void inserir_atualizar_media(Aluno *alunos, char nomes_das_materias[13][30]){
+	// DECLARAÇÃO DE VARIÁVEIS
 	int i, j, escolha_matricula, continuar = 1, escolha_materia = 0, continuar_inserindo_media = 1;
-	Secretario medias[3];
 
 	system("cls");
 	while(continuar != 0){
 		continuar_inserindo_media = 1;
+		// MOSTRA AO SECRETÁRIO QUAIS SÃO AS MATRÍCULAS CADASTRADAS NO SISTEMA
 		printf("MATRICULAS\n");
 		for(i = 0; i < 3; i++){
+			// MOSTRA A MATRÍCULA DE CADA ALUNO
 			printf("%d) %s \n",  i, alunos[i].matricula);
 		}
 
@@ -127,9 +131,8 @@ void inserir_atualizar_media(Aluno *alunos, char nomes_das_materias[13][30]){
 		while(continuar_inserindo_media != 0){
 			system("cls");
 			for (i = 0; i < 13; i++){
-			    // PRINTAR MATRIZ
+			    // PRINTA A MATRIZ DE NOME DAS MATÉRIAS
 			    printf("%d) %s", i, nomes_das_materias[i]);
- 
 			    printf("\n");
 
 			}
@@ -146,14 +149,12 @@ void inserir_atualizar_media(Aluno *alunos, char nomes_das_materias[13][30]){
 			printf("EXECUTADO COM SUCESSO\n");
 			
 			for (i = 0; i < 13; i++){
-			    // PRINTAR MATRIZ
+			    // PRINTA A MATRIZ DE NOME DAS MATÉRIAS
 			    printf("%d) %s", i, nomes_das_materias[i]);
 
-
+			    // PRINTA O VETOR DE MÉDIAS DO ALUNO ESCOLHIDO
 			    printf("%9.1f", alunos[escolha_matricula].media[i]);
 			    
-			    
-
 			    printf("\n");
 
 			}
@@ -167,25 +168,23 @@ void inserir_atualizar_media(Aluno *alunos, char nomes_das_materias[13][30]){
 		printf("DESEJA INSERIR OU ATUALIZAR A MEDIA DE OUTRO ALUNO? [0] NAO [1] SIM\n");
 		scanf("%d", &continuar);
 	}
-	/*
-	if (continuar != 0){
-		system("cls");
-		int main();
-	}
-	*/
 
 }
 
 // FUNÇÃO QUE AUXÍLIA O SECRETÁRIO A ATUALIZAR AS FALTAS DO ALUNOS
 void atualizar_faltas(Aluno *alunos, char nomes_das_materias[13][30]){
+	// DECLARAÇÃO DE VARIÁVEIS
 	int i, j, escolha_matricula, continuar = 1, escolha_materia = 0, continuar_inserindo_faltas = 1;
-	Secretario medias[3];
 
+	// LIMPA TELA
 	system("cls");
+
 	while(continuar != 0){
 		continuar_inserindo_faltas = 1;
+		// MOSTRA AO SECRETÁRIO QUAIS SÃO AS MATRÍCULAS CADASTRADAS NO SISTEMA
 		printf("MATRICULAS\n");
 		for(i = 0; i < 3; i++){
+			// MOSTRA A MATRÍCULA DE CADA ALUNO
 			printf("%d) %s \n",  i, alunos[i].matricula);
 		}
 
@@ -195,13 +194,12 @@ void atualizar_faltas(Aluno *alunos, char nomes_das_materias[13][30]){
 		while(continuar_inserindo_faltas != 0){
 			system("cls");
 			for (i = 0; i < 13; i++){
-			    // PRINTAR MATRIZ
+			    // PRINTA A MATRIZ DE NOME DAS MATÉRIAS
 			    printf("%d) %s", i, nomes_das_materias[i]);
  
 			    printf("\n");
 
 			}
-
 
 			printf("QUAL DAS MATERIAS VOCE DESEJA ATUALIZAR AS FALTAS?\n");
 			scanf("%d", &escolha_materia);
@@ -214,36 +212,29 @@ void atualizar_faltas(Aluno *alunos, char nomes_das_materias[13][30]){
 			printf("EXECUTADO COM SUCESSO\n");
 			
 			for (i = 0; i < 13; i++){
-			    // PRINTAR MATRIZ
+			    // PRINTA A MATRIZ DE NOME DAS MATÉRIAS
 			    printf("%d) %s", i, nomes_das_materias[i]);
-
-			    /*printf("%9.1f", alunos[escolha_matricula].media[i]);*/
-			    printf("%d", alunos[escolha_matricula].qts_faltas[i]);
-			    
-			    
-
+			  	// PRINTA O VETOR DE QUANTIDADE DE FALTAS DO ALUNO ESCOLHIDO
+			    printf("%d", alunos[escolha_matricula].qts_faltas[i]);			    			    
 			    printf("\n");
 
 			}
 
-
 			printf("DESEJA ATUALIZAR AS FALTAS EM OUTRA DISCIPLINA DESSE MESMO ALUNO? [0] NAO [1] SIM\n");
-
 			scanf("%d", &continuar_inserindo_faltas);
 		}
 
 		printf("DESEJA ATUALIZAR AS FALTAS DE OUTRO ALUNO? [0] NAO [1] SIM\n");
 		scanf("%d", &continuar);
 	}
-	if (continuar != 0){
-		system("cls");
-		int main();
-	}	
+
 }
 
 // FUNÇÃO QUE AUXÍLIA O SECRETÁRIO A VIZUALIZAR OS DADOS DOS ALUNOS
 void vizualizar_dados_alunos(Aluno *alunos, char nomes_das_materias[13][30]){
+	// DECLARAÇÃO DE VARIÁVEIS
 	int i, j;
+
 	printf("ALUNOS CADASTRADOS\n");
 	for (i = 0; i < 3; i++){
 		printf("=================================================== \n");
@@ -257,9 +248,9 @@ void vizualizar_dados_alunos(Aluno *alunos, char nomes_das_materias[13][30]){
 		printf("=================================================== \n");
 		printf("                                      FALTAS\n");
 	    for (j = 0; j < 13; j++){
+	    	// PRINTA A MATRIZ DE NOME DAS MATÉRIAS
 		    printf("%d) %s", j, nomes_das_materias[j]);
-
-
+		    // PRINTA A MÉDIA NA MATÉRIA E A QUANTIDADE DE FALTAS LOGO AO LADO
 		    printf("%9.1f    %d", alunos[i].media[j], alunos[i].qts_faltas[j]);
 		    	    
 		    printf("\n");
@@ -318,7 +309,7 @@ void funcoes_aluno(Aluno *alunos, char nomes_das_materias[13][30], int indice_al
 	// DECLARAÇÃO DE VARIÁVEIS
 	int opcao_menu_aluno, j, i, indice_disciplina, continuar = 1;
 
-	// LOOP QUE APRESENTA O MENU DE OPÇÕES DO SISTEMAS PARA OS ALUNOS
+	// LOOP QUE APRESENTA O MENU DE OPÇÕES DO SISTEMA PARA OS ALUNOS
 	while(continuar != 0){
 		system("cls");
 		printf("VOCE DESEJA\n");
@@ -345,7 +336,7 @@ void funcoes_aluno(Aluno *alunos, char nomes_das_materias[13][30], int indice_al
 				printf("=================================================== \n");
 				printf("                                      FALTAS\n");
 				for (j = 0; j < 13; j++){
-				    // PRINTAR MATRIZ DE NOME DAS MATÉRIAS
+				    // PRINTA A MATRIZ DE NOME DAS MATÉRIAS
 				    printf("%d) %s", j, nomes_das_materias[j]);
 				    // PRINTA A MÉDIA NA MATÉRIA E A QUANTIDADE DE FALTAS LOGO AO LADO
 				    printf("%9.1f    %d", alunos[indice_aluno_logado].media[j], alunos[indice_aluno_logado].qts_faltas[j]);				 
@@ -371,7 +362,7 @@ void funcoes_aluno(Aluno *alunos, char nomes_das_materias[13][30], int indice_al
 				system("cls");
 				printf("=================================================== \n");
 				for (j = 0; j < 13; j++){
-				    // PRINTAR MATRIZ DE NOME DAS MATÉRIAS
+				    // PRINTA A MATRIZ DE NOME DAS MATÉRIAS
 				    printf("%d) %s", j, nomes_das_materias[j]);	
 				    printf("\n");
 				}
