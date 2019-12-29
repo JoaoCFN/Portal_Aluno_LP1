@@ -80,7 +80,8 @@ void funcoes_secretario(Aluno *alunos, char nomes_das_materias[13][30]){
 	int opcao_func;
 	printf("O QUE DESEJA FAZER?\n");
 	printf("1) INSERIR OU ATUALIZAR MEDIAS\n");
-	printf("2) VIZUALIZAR DADOS DO ALUNO \n");
+	printf("2) ATUALIZAR FALTAS\n");
+	printf("3) VIZUALIZAR DADOS DO ALUNO \n");
 	scanf("%d", &opcao_func);
 
 	switch(opcao_func){
@@ -89,6 +90,10 @@ void funcoes_secretario(Aluno *alunos, char nomes_das_materias[13][30]){
 		break;
 
 		case 2:
+			atualizar_faltas(alunos, nomes_das_materias);
+		break;
+
+		case 3:
 			vizualizar_dados_alunos(alunos, nomes_das_materias);
 		break;
 
@@ -118,9 +123,7 @@ void inserir_atualizar_media(Aluno *alunos, char nomes_das_materias[13][30]){
 			for (i = 0; i < 13; i++){
 			    // PRINTAR MATRIZ
 			    printf("%d) %s", i, nomes_das_materias[i]);
-
-			    /*printf("%9.1f", alunos[escolha_matricula].media[escolha_materia]);*/		    
-			    
+ 
 			    printf("\n");
 
 			}
@@ -163,6 +166,72 @@ void inserir_atualizar_media(Aluno *alunos, char nomes_das_materias[13][30]){
 		int main();
 	}
 
+}
+
+// FUNÇÃO QUE AUXÍLIA O SECRETÁRIO A ATUALIZAR AS FALTAS DO ALUNOS
+
+void atualizar_faltas(Aluno *alunos, char nomes_das_materias[13][30]){
+	int i, j, escolha_matricula, continuar = 1, escolha_materia = 0, continuar_inserindo_faltas = 1;
+	Secretario medias[3];
+
+	system("cls");
+	while(continuar != 0){
+
+		printf("MATRICULAS\n");
+		for(i = 0; i < 3; i++){
+			printf("%d) %s \n",  i, alunos[i].matricula);
+		}
+
+		printf("QUAL DOS ALUNOS VOCE DESEJA ATUALIZAR AS FALTAS?\n");
+		scanf("%d", &escolha_matricula);
+
+		while(continuar_inserindo_faltas != 0){
+			system("cls");
+			for (i = 0; i < 13; i++){
+			    // PRINTAR MATRIZ
+			    printf("%d) %s", i, nomes_das_materias[i]);
+ 
+			    printf("\n");
+
+			}
+
+
+			printf("QUAL DAS MATERIAS VOCE DESEJA ATUALIZAR AS FALTAS?\n");
+			scanf("%d", &escolha_materia);
+
+			printf("QUANTIDADE DE FALTAS:\n");
+			scanf("%d", &alunos[escolha_matricula].qts_faltas[escolha_materia]);
+			
+
+			system("cls");
+			printf("EXECUTADO COM SUCESSO\n");
+			
+			for (i = 0; i < 13; i++){
+			    // PRINTAR MATRIZ
+			    printf("%d) %s", i, nomes_das_materias[i]);
+
+			    /*printf("%9.1f", alunos[escolha_matricula].media[i]);*/
+			    printf("%d", alunos[escolha_matricula].qts_faltas[i]);
+			    
+			    
+
+			    printf("\n");
+
+			}
+
+
+			printf("DESEJA ATUALIZAR AS FALTAS EM OUTRA DISCIPLINA DESSE MESMO ALUNO? [0] NAO [1] SIM\n");
+
+			scanf("%d", &continuar_inserindo_faltas);
+		}
+
+		printf("DESEJA ATUALIZAR AS FALTAS DE OUTRO ALUNO? [0] NAO [1] SIM\n");
+		scanf("%d", &continuar);
+	}
+	if (continuar != 0){
+		system("cls");
+		int main();
+	}	
 }
 
 // FUNÇÃO QUE AUXÍLIA O SECRETÁRIO A VIZUALIZAR OS DADOS DOS ALUNOS
@@ -270,6 +339,15 @@ void funcoes_aluno(Aluno *alunos, char nomes_das_materias[13][30], int indice_al
 			    
 			    printf("\n");
 
+			    if(alunos[indice_aluno_logado].media[j] > 7){
+			    	printf("STATUS: APROVADO\n");
+			    }
+			    else{
+			    	printf("STATUS: REPROVADO\n");
+			    }
+
+			    printf("\n");
+
 			}
 		    printf("=================================================== \n");
 		break;
@@ -277,11 +355,12 @@ void funcoes_aluno(Aluno *alunos, char nomes_das_materias[13][30], int indice_al
 		case 3:
 			system("cls");
 			printf("=================================================== \n");
-			for (i = 0; i < 13; i++){
+			for (j = 0; j < 13; j++){
 			    // PRINTAR MATRIZ
-			    printf("%d) %s", i, nomes_das_materias[i]);	    
-			    
+			    printf("%d) %s", j, nomes_das_materias[j]);	
+
 			    printf("\n");
+
 
 			}
 
@@ -294,6 +373,15 @@ void funcoes_aluno(Aluno *alunos, char nomes_das_materias[13][30], int indice_al
 
 		    printf("%9.1f    %d", alunos[indice_aluno_logado].media[indice_disciplina], alunos[indice_aluno_logado].qts_faltas[indice_disciplina]);
 		    
+		    printf("\n");
+		    
+		    if(alunos[indice_aluno_logado].media[indice_disciplina] > 7){
+			    	printf("STATUS: APROVADO\n");
+			    }
+			else{
+			    printf("STATUS: REPROVADO\n");
+			}    
+
 		    printf("\n");
 
 			
