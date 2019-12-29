@@ -115,7 +115,7 @@ void inserir_atualizar_media(Aluno *alunos, char nomes_das_materias[13][30]){
 
 	system("cls");
 	while(continuar != 0){
-
+		continuar_inserindo_media = 1;
 		printf("MATRICULAS\n");
 		for(i = 0; i < 3; i++){
 			printf("%d) %s \n",  i, alunos[i].matricula);
@@ -167,10 +167,12 @@ void inserir_atualizar_media(Aluno *alunos, char nomes_das_materias[13][30]){
 		printf("DESEJA INSERIR OU ATUALIZAR A MEDIA DE OUTRO ALUNO? [0] NAO [1] SIM\n");
 		scanf("%d", &continuar);
 	}
+	/*
 	if (continuar != 0){
 		system("cls");
 		int main();
 	}
+	*/
 
 }
 
@@ -182,7 +184,7 @@ void atualizar_faltas(Aluno *alunos, char nomes_das_materias[13][30]){
 
 	system("cls");
 	while(continuar != 0){
-
+		continuar_inserindo_faltas = 1;
 		printf("MATRICULAS\n");
 		for(i = 0; i < 3; i++){
 			printf("%d) %s \n",  i, alunos[i].matricula);
@@ -205,7 +207,7 @@ void atualizar_faltas(Aluno *alunos, char nomes_das_materias[13][30]){
 			printf("QUAL DAS MATERIAS VOCE DESEJA ATUALIZAR AS FALTAS?\n");
 			scanf("%d", &escolha_materia);
 
-			printf("QUANTIDADE DE FALTAS:\n");
+			printf("QUANTIDADE DE FALTAS [EM HORAS]:\n");
 			scanf("%d", &alunos[escolha_matricula].qts_faltas[escolha_materia]);
 			
 
@@ -347,12 +349,13 @@ void funcoes_aluno(Aluno *alunos, char nomes_das_materias[13][30], int indice_al
 				    
 				    printf("\n");
 
-				    if(alunos[indice_aluno_logado].media[j] > 7){
+				    if(alunos[indice_aluno_logado].media[j] > 7 && alunos[indice_aluno_logado].qts_faltas[j] < 15){
 				    	printf("STATUS: APROVADO\n");
-				    }
-				    else{
-				    	printf("STATUS: REPROVADO\n");
-				    }
+				    	
+					}
+					else{
+					    printf("STATUS: REPROVADO\n");
+					} 
 
 				    printf("\n");
 
@@ -383,9 +386,10 @@ void funcoes_aluno(Aluno *alunos, char nomes_das_materias[13][30], int indice_al
 			    
 			    printf("\n");
 
-			    if(alunos[indice_aluno_logado].media[indice_disciplina] > 7){
-				    	printf("STATUS: APROVADO\n");
-				    }
+			    if(alunos[indice_aluno_logado].media[indice_disciplina] > 7 && alunos[indice_aluno_logado].qts_faltas[indice_disciplina] < 15){
+				    printf("STATUS: APROVADO\n");
+				    	
+				}
 				else{
 				    printf("STATUS: REPROVADO\n");
 				}    
